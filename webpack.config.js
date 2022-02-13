@@ -19,6 +19,10 @@ module.exports = {
     hot: true, //开启热更新
     clientLogLevel: 'none',  //关闭浏览器控制台输出的热更新信息
   },
+  resolve: {
+    // Add `.ts` and `.tsx` as a resolvable extension.
+    extensions: [".ts", ".tsx", ".js"]
+  },
   module: {
     rules: [
       {
@@ -34,6 +38,7 @@ module.exports = {
         exclude: /node_modules/,
         use: ["babel-loader"]
       },
+      { test: /\.ts$/, loader: "ts-loader" },
       // 处理 css 
       {
         test: /\.(css)$/,

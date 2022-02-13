@@ -16,7 +16,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.text {
+// .text {
+//   color: red;
+// }
+body {
   color: red;
 }
 </style>
