@@ -5,6 +5,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const MyBannerPlugin = require('./plugins/MyBannerPlugin')
+const webpack = require("webpack");
 
 module.exports = merge(webpackCommon, {
   mode: "production",
@@ -65,6 +67,8 @@ module.exports = merge(webpackCommon, {
       filename: 'css/[name].[hash:8].css'
     }),
     new OptimizeCssAssetsPlugin(),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new MyBannerPlugin('版权所有，翻版必究--zwx')
+    // new webpack.BannerPlugin('版权所有，翻版必究--zwx')
   ],
 })
