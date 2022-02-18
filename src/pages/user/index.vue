@@ -8,7 +8,7 @@
 export default {
   data: () => {
     return {
-      aaa: 111
+      aaa: "111"
     }
   }
 }
