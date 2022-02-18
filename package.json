@@ -42,6 +42,7 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "hard-source-webpack-plugin": "^0.13.1",
     "html-webpack-plugin": "^4.5.2",
+    "husky": "^7.0.4",
     "less-loader": "^7.3.0",
     "mini-css-extract-plugin": "^1.6.2",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
