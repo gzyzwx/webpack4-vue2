@@ -65,6 +65,12 @@
     "vuex": "^3.6.2"
   },
   "gitHooks": {
-    "commit-msg": "npm run lint"
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "npm run lint",
+      "git add"
+    ]
   }
 }
