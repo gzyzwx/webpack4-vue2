@@ -4,3 +4,5 @@ node_modules
 # 配置本地npm地址，registry=xxx
 .npmrc
 # 比如下载私有仓库的 "hx-utils": "^1.0.2",
+
+.eslintcache

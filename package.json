@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.js",
     "build:prod": "webpack --config build/webpack.prod.js",
-    "commitlint": "commitlint --config commitlint.config.js -e -V"
+    "commitlint": "commitlint --config commitlint.config.js -e -V",
+    "husky": "husky install",
+    "husky-add": "husky add .husky/pre-commit",
+    "lint-staged": "lint-staged"
   },
   "repository": {
     "type": "git",
