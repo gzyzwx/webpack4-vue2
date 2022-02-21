@@ -1,4 +1,4 @@
-<template >
+<template>
   <div>
     <div>'vuex-state:'{{ text }}</div>
     <div>'vuex-getter:'{{ getText }}</div>
@@ -6,10 +6,10 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapState, mapActions } from "vuex"
-import {ccc} from '@/utils/index'
-console.log(ccc('dddd'))
-import aaa from '@/assets/images/demo.jpg'
+import { mapGetters, mapState, mapActions } from 'vuex'
+// import {ccc} from '@/utils/index'
+// console.log(ccc('dddd'))
+// import aaa from '@/assets/images/demo.jpg'
 // import {dateFormat, copy} from 'hx-utils' // 只有配置npmrc 才能下载
 // console.log(dateFormat, 'dateFormat')
 // console.log(dateFormat('YY-DD', new Date))
@@ -17,7 +17,7 @@ import aaa from '@/assets/images/demo.jpg'
 export default {
   data() {
     return {
-      ddd:222
+      ddd: 222
     }
   },
   computed: {
@@ -25,7 +25,7 @@ export default {
     ...mapGetters(['getText'])
   },
   methods: {
-    ...mapActions(['setText']),
+    ...mapActions(['setText'])
     // copyHandler() {
     //   复制功能，必须有人为事件，否则chrome 不会自动复制 例如播放视频也是无法自动播放
     //   copy('222').then(res => {
