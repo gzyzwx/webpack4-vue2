@@ -14,7 +14,7 @@ export default {
   mounted() {
     let a = 1
     console.log(a)
-    console.log(1, '1')
+    console.log(1, '1', a)
   }
 }
 </script>
