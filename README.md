@@ -42,6 +42,14 @@ externals: {
     "vue-router": "VueRouter"
   },
 
+tree-shaking
+package.json sideEffects 配置允许副作用代码
+"sideEffects": [
+    "*.css",
+    "*.vue",
+    "*.less"
+  ],
+
 自定义plugin的简易尝试
 
 忽略commit 检测 
