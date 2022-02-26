@@ -1,13 +1,13 @@
-const path = require('path');
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 module.exports = {
-  entry: path.join(__dirname, "../src/main.js"),
+  entry: path.join(__dirname, '../src/main.js'),
   output: {
-    path: path.join(__dirname, "../dist"),
-    filename: "js/[name].[hash].js"
+    path: path.join(__dirname, '../dist'),
+    filename: 'js/[name].[hash].js'
   },
   module: {
     rules: [
@@ -22,11 +22,9 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                   name: '[name].[hash:8].[ext]',
-                  outputPath: '../dist/assets/images/', //打包之后文件存放的路径, dist/images
+                  outputPath: '../dist/assets/images/' //打包之后文件存放的路径, dist/images
                 }
-
-              },
-
+              }
             }
           }
         ]
@@ -42,10 +40,9 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                   name: '[name].[hash:8].[ext]',
-                  outputPath: '../dist/assets/media/',
+                  outputPath: '../dist/assets/media/'
                 }
-              },
-
+              }
             }
           }
         ]
@@ -61,44 +58,45 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                   name: '[name].[hash:8].[ext]',
-                  outputPath: '../dist/assets/fonts/',
+                  outputPath: '../dist/assets/fonts/'
                 }
-              },
-
+              }
             }
           }
         ]
       },
       {
         test: /\.vue$/,
-        use: ["vue-loader"]
+        use: ['vue-loader']
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        include: path.join(__dirname, "../src"),
+        include: path.join(__dirname, '../src'),
         // use: ["thread-loader", "cache-loader", "babel-loader"], // 这种需要安装 cache-loader
         use: [
-          "thread-loader",
+          'thread-loader',
           {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true
             }
-          }]
+          }
+        ]
       },
-      { test: /\.ts$/, loader: "ts-loader" },
+      { test: /\.ts$/, loader: 'ts-loader' }
     ]
   },
   resolve: {
     alias: {
-      "@": path.join(__dirname, "../src")
+      '@': path.join(__dirname, '../src')
     },
-    extensions: [".vue", ".js", ".ts",]
+    extensions: ['.vue', '.js', '.ts']
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../public/index.html')
+      template: path.join(__dirname, '../public/index.html'),
+      env: 'production'
     }),
     new VueLoaderPlugin(),
     // 为模块提供中间缓存，不能和 SpeedMeasurePlugin 插件同时使用
@@ -106,8 +104,8 @@ module.exports = {
     // 排除缓存 MiniCssExtractPlugin 插件 ，不然会报错
     new HardSourceWebpackPlugin.ExcludeModulePlugin([
       {
-        test: /mini-css-extract-plugin[\\/]dist[\\/]loader/,
-      },
-    ]),
+        test: /mini-css-extract-plugin[\\/]dist[\\/]loader/
+      }
+    ])
   ]
-};
+}
