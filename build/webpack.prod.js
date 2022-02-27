@@ -41,7 +41,8 @@ module.exports = merge(webpackCommon, {
     'vue-router': 'VueRouter'
   },
   optimization: {
-    sideEffects: true, //只导出被使用的模块
+    sideEffects: true, //允许副作用配置，配合package.json 配置
+    usedExports: true, //只导出被使用的模块
     minimizer: [
       // 压缩 JS
       new TerserPlugin({
