@@ -10,7 +10,7 @@ cache-loader 开启缓存，为下次编译提速
 babel-loader 也自带loader
 
 压缩js
-optimization {
+```optimization {
     minimizer: {
         // 压缩 JS
       new TerserPlugin({
@@ -31,7 +31,7 @@ optimization {
       }),
     }
 }
-
+```
 css提取，并压缩
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -66,13 +66,14 @@ webpack5 和 webpack4 的区别
 1、webpack5的 mode=“production” 自动开启 tree-shaking。（实测，webpack4.46.0 也开启）
 2、webpack5生产环境自动压缩js代码
 webpack5开发环境配置
-  // webpack.config.js中
+```// webpack.config.js中
   module.exports = {
      optimization: {
        usedExports: true, //只导出被使用的模块
        minimize : true // 启动压缩
      }
   }
+```
 webpack4 需要配置
 ```const TerserPlugin = require('terser-webpack-plugin')
 
@@ -89,7 +90,8 @@ optimization: {
         }
       }
     }) ]
- }```
+ }
+ ```
  
  3、webpack5 自动压缩js失效，原因在optimization => minimizer配置了css压缩导致（optimize-css-assets-webpack-plugin）
  解决方案 
@@ -100,10 +102,11 @@ optimization: {
 
  5、webpack5 缓存 cache 配置选项
  // 使用持久化缓存
-  cache: {
+  ```cache: {
     type: 'filesystem'，
     cacheDirectory: path.join(__dirname, 'node_modules/.cac/webpack')
   }
+  ```
  webpack4 用 hard-source-webpack-plugin
 
  6、对loader的优化
