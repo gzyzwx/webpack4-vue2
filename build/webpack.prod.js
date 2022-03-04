@@ -7,6 +7,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MyBannerPlugin = require('./plugins/MyBannerPlugin')
 // const webpack = require("webpack");
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = merge(webpackCommon, {
   mode: 'production',
@@ -27,7 +29,12 @@ module.exports = merge(webpackCommon, {
         test: /\.less$/,
         include: path.join(__dirname, '../src'),
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false
+            }
+          },
           // "thread-loader", // 项目大，loader 花费时间长时用
           'css-loader',
           'postcss-loader',
@@ -43,6 +50,26 @@ module.exports = merge(webpackCommon, {
   optimization: {
     sideEffects: true, //允许副作用配置，配合package.json 配置
     usedExports: true, //只导出被使用的模块
+    // 抽离公共代码
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          name: 'vendor',
+          test: /[\\/]node_modules[\\/]/,
+          minSize: 0,
+          minChunks: 1,
+          priority: 10,
+          chunks: 'initial'
+        },
+        common: {
+          name: 'common',
+          test: /[\\/]src[\\/]/,
+          chunks: 'all',
+          minSize: 0,
+          minChunks: 2
+        }
+      }
+    },
     minimizer: [
       // 压缩 JS
       new TerserPlugin({
@@ -68,7 +95,19 @@ module.exports = merge(webpackCommon, {
     }),
     new OptimizeCssAssetsPlugin(),
     new CleanWebpackPlugin(),
-    new MyBannerPlugin('版权所有，翻版必究--zwx')
+    new MyBannerPlugin('版权所有，翻版必究--zwx'),
     // new webpack.BannerPlugin('版权所有，翻版必究--zwx')
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'server',
+      analyzerHost: '127.0.0.1',
+      analyzerPort: 8889,
+      reportFilename: 'report.html',
+      defaultSizes: 'parsed',
+      openAnalyzer: true,
+      generateStatsFile: false,
+      statsFilename: 'stats.json',
+      statsOptions: null,
+      logLevel: 'info'
+    })
   ]
 })
