@@ -7,6 +7,7 @@
 </template>
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex'
+
 // import {ccc} from '@/utils/index'
 // console.log(ccc('dddd'))
 // import aaa from '@/assets/images/demo.jpg'
