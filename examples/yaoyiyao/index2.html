@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //运动事件监听
+if (window.DeviceMotionEvent) {
+    // 没有支持的可以报错
+    window.addEventListener('devicemotion',deviceMotionHandler,false);
+} else {
+    alert('不支持')
+}
+
+//获取加速度信息
+//通过监听X,Y,Z的变化率来判断是否大于摇晃的限制，从而响应动作。
+//而为了防止误判，需要给该变化率设置一个合适的临界值。
+//可以设置单方向的加速度的限制
+var SHAKE_THRESHOLD = 4000;
+var last_update = 0;
+var x, y, z, lastX = 0, lastY = 0, lastZ = 0;
+function deviceMotionHandler(eventData) {
+        var acceleration =eventData.accelerationIncludingGravity;
+        var curTime = new Date().getTime();
+        if ((curTime-last_update)> 10) {
+            var diffTime = curTime - last_update;
+            last_update = curTime;
+            x = acceleration.x;
+            y = acceleration.y;
+            z = acceleration.z;
+            var speed = Math.abs(x + y + z - lastX - lastY - lastZ) / diffTime * 10000;
+            if (speed > SHAKE_THRESHOLD) {
+                // Do something
+            }
+            lastX = x;
+            lastY = y;
+            lastZ = z;
+        }
+}
+    </script>
+</body>
+</html>
