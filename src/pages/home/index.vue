@@ -3,14 +3,20 @@
     <div>'vuex-state:'{{ text }}</div>
     <div>'vuex-getter:'{{ getText }}</div>
     <button @click="setText(123)">修改state的值</button>
+    <img :src="aaa" alt="" />
+    <img :src="aaa1" alt="" />
+    <img :src="ddd" alt="" />
   </div>
 </template>
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex'
 
-// import {ccc} from '@/utils/index'
-// console.log(ccc('dddd'))
-// import aaa from '@/assets/images/demo.jpg'
+import { ccc } from '@/utils/index'
+console.log(ccc, ccc('dddd'))
+import aaa from '@/assets/images/demo.jpg'
+const aaa1 = require('@/assets/images/demo.jpg')
+import ddd from '../../assets/images/demo.jpg'
+console.log(aaa, aaa1.default, ddd)
 // import {dateFormat, copy} from 'hx-utils' // 只有配置npmrc 才能下载
 // console.log(dateFormat, 'dateFormat')
 // console.log(dateFormat('YY-DD', new Date))
@@ -18,12 +24,17 @@ import { mapGetters, mapState, mapActions } from 'vuex'
 export default {
   data() {
     return {
-      ddd: 222
+      aaa,
+      aaa1: aaa1.default,
+      ddd
     }
   },
   computed: {
     ...mapState(['text']),
     ...mapGetters(['getText'])
+  },
+  mounted() {
+    console.log(this.aaa, 'this.aaa')
   },
   methods: {
     ...mapActions(['setText'])

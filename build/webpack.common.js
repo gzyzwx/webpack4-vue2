@@ -8,6 +8,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '../dist'),
     filename: 'js/[name].[hash].js'
+    // publicPath:'/',
   },
   module: {
     rules: [
@@ -23,6 +24,7 @@ module.exports = {
                 options: {
                   name: '[name].[hash:8].[ext]',
                   outputPath: '../dist/assets/images/' //打包之后文件存放的路径, dist/images
+                  // publicPath: './assets/images' // 拼接在url的目录，不设置默认使用 outputPath 的路径
                 }
               }
             }
